@@ -1,35 +1,35 @@
 #!/usr/bin/env python
 from subprocess import call, Popen, PIPE
 from multiprocessing import Process
+import sys
 
-class sensor(object):
+class pipeToProcess(object):
 	def __init__(self):
 		self.name ="monitor"
 	def setproc(self,str):
 		self.proc = str
-	def setdev(self,str):
-		self.device =str
-	def setdevname(self,str):
-		self.devName = str
-	def setoutfile(self,str):
-		self.filename = str
+	def setredirectproc(self,str):
+		self.proc2 = str
+	def setArgsOne(self,str):
+		self.args1 =str
 	def start(self):
-		Popen([self.proc , self.device],stdout=PIPE,stderr=PIPE)#,  self.devName])#, self.filename])
-		
+		self.processIn=Popen([self.proc , self.args1],stdout=PIPE,stderr=PIPE)
+		for line in self.processIn.stdout:
+			sys.stdout.write(line)
+		self.processOut=Popen([self.proc2 ],stdin=self.processIn.stdout,stderr=PIPE)
+		self.processIn.stdout.close()
+		self.processOut.communicate()
 		
 def a():
-	s2 = sensor()
-	s2.setproc("/bin/ls")
-	s2.setdev("-l")
-	s2.setdevname("| less")
-	s2.setoutfile("/home/richard/dev/pythonscripts/echo.py")
+	s2 = pipeToProcess()
+	s2.setproc("/bin/ps")
+	s2.setredirectproc("/home/richard/git/pyscripts/echo.py")
+	s2.setArgsOne("-A")
 	s2.start()
 
 if __name__ == '__main__':
 	a()
- 	 #  p2 = Process(target=a )
-    #	p2.start()
-    #	p2.join()
+	
 
 	
     
