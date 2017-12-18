@@ -66,7 +66,10 @@
             "console": "externalTerminal",
             "env": {},
             "envFile": "${workspaceFolder}/.env",
-            "debugOptions": []
+            "debugOptions": [],
+            "args": ["ps"]
+                
+            
         },
         {
             "name": "Python: Django",

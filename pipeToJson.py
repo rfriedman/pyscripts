@@ -1,7 +1,6 @@
 #!/usr/bin/env python
-from subprocess import call, Popen, PIPE
-from multiprocessing import Process
-import sys
+from subprocess import Popen, PIPE
+import argparse
 
 class pipeToProcess(object):
 	def __init__(self):
@@ -23,13 +22,18 @@ class pipeToProcess(object):
 def a():
 	s2 = pipeToProcess()
 	s2.setproc("/bin/ps")
-	s2.setArgsOne("-a")
-	s2.setredirectproc("./echo.py")
+	s2.setArgsOne("-A")
+	s2.setredirectproc("./psJson.py")
 	s2.start()
 
 if __name__ == '__main__':
-	a()
-	
+  Parser = argparse.ArgumentParser(description='Select process for json serialize.')
+  Parser.add_argument('process', help='process to serialize')
+  Args= Parser.parse_args()
 
-	
+  if Args.process == "ps":
+    a()
+
+
+
     
