@@ -13,15 +13,15 @@ class outputToDictionary(object):
         self.headercnt=len(self.headers)
     def serialtojson(self):
         self.data={}
+        self.node=dict()
         self.data['process']=[]
         for line in self.lines[1:]:
+            __cnt = 0
             self.values=line.split()
-            self.data['process'].append({  
-          self.headers[0]:self.values[0],
-          self.headers[1]:self.values[1],
-          self.headers[2]:self.values[2],
-          self.headers[3]:self.values[3],
-          })
+            for i in range(0,self.headercnt):
+               self.node[self.headers[__cnt]]=self.values[__cnt]
+               __cnt = __cnt +1
+            self.data['process'].append(self.node)
     def outputjson(self):
         with open('ps_data.txt', 'w') as outfile:  
            json.dump(self.data, outfile, indent=4)
