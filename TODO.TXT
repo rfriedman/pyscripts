@@ -1,0 +1,2 @@
+need to add doc strings
+need to add code to serialize variable column count
