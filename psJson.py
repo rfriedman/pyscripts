@@ -6,25 +6,23 @@ import json
 class outputToDictionary(object):
     def __init__(self,value):
         self.lines=value
-        self.stringList()
+        self.headerlist()
         self.serialtojson()
-    def stringList(self):
+    def headerlist(self):
         self.headers = self.lines[0].split()
         self.headercnt=len(self.headers)
     def serialtojson(self):
         self.data={}
-        self.node=dict()
         self.data['process']=[]
         for line in self.lines[1:]:
             __cnt = 0
             self.values=line.split()
-            for i in range(0,self.headercnt):
+            self.node=dict()            
+            for __cnt in range(0,self.headercnt):
                self.node[self.headers[__cnt]]=self.values[__cnt]
-               __cnt = __cnt +1
             self.data['process'].append(self.node)
     def outputjson(self):
-        with open('ps_data.txt', 'w') as outfile:  
-           json.dump(self.data, outfile, indent=4)
+           json.dump(self.data, sys.stdout, indent=4)
 
 if __name__ == "__main__":
     strLine = sys.stdin.readlines()
