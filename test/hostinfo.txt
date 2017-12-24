@@ -1,0 +1,7 @@
+192.168.0.6 ::7dce:41e0:d073:a6aa ::a3e:8eff:fe38:1c04 
+Sun Dec 24 17:34:05 EST 2017
+  PID TTY          TIME CMD
+  605 tty1     00:00:00 clear_console
+ 4204 tty2     00:00:00 bash
+18923 pts/7    00:00:00 ps
+30450 tty1     00:00:01 bash

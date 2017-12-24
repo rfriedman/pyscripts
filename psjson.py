@@ -16,24 +16,44 @@ class PsTblToJson(object):
        """  
     def __init__(self,value):
         """constructor reads file and parses lines into a list self.lines"""
+        self.node = dict()
+        self.data = dict() 
+        self.datanode = dict()
+        self.data['hostinfo']= dict()
         self.lines = value.readlines()
         self.headerlist()
+        self.hostinfo()
         self.serialtojson()
+
     def headerlist(self):
         """creates headers from first line read in from file self.lines"""
-        self.headers = self.lines[0].split()
+        self.headers = self.lines[2].split()
         self.headercnt = len(self.headers)
+
+    def hostinfo(self):
+        """get host info {"ipv4":address,"ipv6":address} """
+        self.infolist = dict(ip = 'ipv4:ipv6',date = 'datetime')
+        self.host = self.lines[0]
+        self.date = self.lines[1]
+        self.node.clear()
+        self.node[self.infolist['ip']] = self.host
+        self.node[self.infolist['date']] = self.date
+        self.data['hostinfo'].update(self.node)
+        
+        
     def serialtojson(self):
         """creates dictionary object to output to json self.data"""
-        self.data={}
-        self.data['process']=[]
-        for line in self.lines[1:]:
+        self.datanode.clear()
+        self.datanode['process'] = []
+        for line in self.lines[3:]:
             __cnt = 0
-            self.values=line.split()
-            self.node=dict()            
+            self.values = line.split()
+            self.node.clear()            
             for __cnt in range(0,self.headercnt):
                self.node[self.headers[__cnt]]=self.values[__cnt]
-            self.data['process'].append(self.node)
+            self.datanode['process'].append(self.node)
+        self.data['hostinfo'].update(self.datanode)
+        
     def outputjson(self):
         """dumps json file self.data to stdout"""
         json.dump(self.data, sys.stdout, indent=4)
