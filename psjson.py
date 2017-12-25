@@ -48,7 +48,7 @@ class PsTblToJson(object):
         for line in self.lines[3:]:
             __cnt = 0
             self.values = line.split()
-            self.node.clear()            
+            self.node = dict()            
             for __cnt in range(0,self.headercnt):
                self.node[self.headers[__cnt]]=self.values[__cnt]
             self.datanode['process'].append(self.node)

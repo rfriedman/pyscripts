@@ -1,0 +1,32 @@
+{
+    "hostinfo": {
+        "process": [
+            {
+                "TTY": "tty1", 
+                "CMD": "clear_console", 
+                "PID": "605", 
+                "TIME": "00:00:00"
+            }, 
+            {
+                "TTY": "tty2", 
+                "CMD": "bash", 
+                "PID": "4204", 
+                "TIME": "00:00:00"
+            }, 
+            {
+                "TTY": "pts/7", 
+                "CMD": "ps", 
+                "PID": "18923", 
+                "TIME": "00:00:00"
+            }, 
+            {
+                "TTY": "tty1", 
+                "CMD": "bash", 
+                "PID": "30450", 
+                "TIME": "00:00:01"
+            }
+        ], 
+        "ipv4": "192.168.0.6", 
+        "datetime": "Sun Dec 24 17:34:05 EST 2017\n"
+    }
+}
