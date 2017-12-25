@@ -32,11 +32,11 @@ class PsTblToJson(object):
 
     def hostinfo(self):
         """get host info {"ipv4":address,"ipv6":address} """
-        self.infolist = dict(ip = 'ipv4:ipv6',date = 'datetime')
-        self.host = self.lines[0]
+        self.infolist = dict(ip = 'ipv4',date = 'datetime')
+        self.host = self.lines[0].split()
         self.date = self.lines[1]
         self.node.clear()
-        self.node[self.infolist['ip']] = self.host
+        self.node[self.infolist['ip']] = self.host[0]
         self.node[self.infolist['date']] = self.date
         self.data['hostinfo'].update(self.node)
         
@@ -55,13 +55,23 @@ class PsTblToJson(object):
         self.data['hostinfo'].update(self.datanode)
         
     def outputjson(self):
-        """dumps json file self.data to stdout"""
+        """dumps json self.data to stdout"""
         json.dump(self.data, sys.stdout, indent=4)
+        
+    def jsontofile(self):
+        """dumps json to file based on ip 192.168.0.[1] = host1"""
+        self.ip = self.host[0].split('.')
+        self.hostnum = self.ip[3]
+        self.file = 'host' + self.hostnum + '.json'
+        with open(self.file,'w') as jsonfile:
+            json.dump(self.data, jsonfile, indent = 4)
+
 
 if __name__ == "__main__":
     #strLine = sys.stdin.readlines()
     p = PsTblToJson(sys.stdin)
-    p.outputjson()
+#    p.outputjson()
+    p.jsontofile()
 
 
        # sys.stdout.write(line)
