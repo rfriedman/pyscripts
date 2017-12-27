@@ -4,7 +4,7 @@ import argparse
 
 class pipeToProcess(object):
 	''' need to accomodate:
-	ssh {user}@{hostlist} 'ssh-keygen'
+	ssh {user}@{hostlist} 'ssh-keygen' 2>>error.log
 	cat .ssh/id_rsa.pub | ssh {user}@{hostlist} 'cat >> ~/.ssh/authorized_keys'
 	ssh {user}@{hostlist} 'cat ~/.ssh/id_rsa.pub' | cat >> ~/.ssh/authorized_keys
 	cat hostinfo.sh | ssh {user}@{hostlist} 'cat >> ~/hostinfo.sh &&
@@ -20,10 +20,13 @@ class pipeToProcess(object):
 		self.inlist = list()
 		self.outlist = list()
 		self.inlist()
+	def keygen(self):
+		for host in hostslist:
+			self.setproc(inlis)
 
 
-	def inlist():
-		lst = self.processlist.split
+	def inlist(self):
+		lst = self.processlist.split('|')
 		cnt = 0
 		for line in lst:
 			cnt = cnt+1
