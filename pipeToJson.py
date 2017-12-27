@@ -13,18 +13,24 @@ class pipeToProcess(object):
 	cat /etc/crontab | ssh {user}@{hostlist} 'cat >> ~/crontab &&
 	 sudo cp ~/crontab /etc/crontab &&
 	 rm ~/crontab'
-
 	'''
 	def __init__(self,procfile, hostsfile):
 		self.processlist = procfile.readlines()
 		self.hostslist = hostsfile.readlines()
-		self.inlist = processlist
+		self.inlist = list()
+		self.outlist = list()
+		self.inlist()
+
+
 	def inlist():
 		lst = self.processlist.split
 		cnt = 0
 		for line in lst:
 			cnt = cnt+1
-			if cnt 
+			if cnt % 2 == 0:
+				self.outlist.append(line)
+			else:
+				self.inlist.append(line)
 	def setproc(self,str):
 		self.proc = str
 	def setredirectproc(self,str):
