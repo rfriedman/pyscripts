@@ -3,8 +3,28 @@ from subprocess import Popen, PIPE
 import argparse
 
 class pipeToProcess(object):
-	def __init__(self):
-		self.name ="monitor"
+	''' need to accomodate:
+	ssh {user}@{hostlist} 'ssh-keygen'
+	cat .ssh/id_rsa.pub | ssh {user}@{hostlist} 'cat >> ~/.ssh/authorized_keys'
+	ssh {user}@{hostlist} 'cat ~/.ssh/id_rsa.pub' | cat >> ~/.ssh/authorized_keys
+	cat hostinfo.sh | ssh {user}@{hostlist} 'cat >> ~/hostinfo.sh &&
+	 sudo cp ~/hostinfo.sh /usr/local/sbin &&
+	 rm ~/hosinfo.sh'
+	cat /etc/crontab | ssh {user}@{hostlist} 'cat >> ~/crontab &&
+	 sudo cp ~/crontab /etc/crontab &&
+	 rm ~/crontab'
+
+	'''
+	def __init__(self,procfile, hostsfile):
+		self.processlist = procfile.readlines()
+		self.hostslist = hostsfile.readlines()
+		self.inlist = processlist
+	def inlist():
+		lst = self.processlist.split
+		cnt = 0
+		for line in lst:
+			cnt = cnt+1
+			if cnt 
 	def setproc(self,str):
 		self.proc = str
 	def setredirectproc(self,str):
@@ -12,10 +32,11 @@ class pipeToProcess(object):
 	def setArgsOne(self,str):
 		self.args1 =str
 	def start(self):
-		self.processIn=Popen([self.proc , self.args1],stdout=PIPE,stderr=PIPE)
-		#for line in self.processIn.stdout:
-		#	sys.stdout.write(line)
-		self.processOut=Popen([self.proc2 ],stdin=self.processIn.stdout,stderr=PIPE)
+		self.processIn =
+          Popen([self.proc , self.args1],stdout=PIPE,stderr=PIPE)
+		self.processOut = 
+		  Popen([self.proc2 ],stdin=self.processIn.stdout,stderr=PIPE)
+
 		self.processIn.stdout.close()
 		self.processOut.communicate()
 		
@@ -27,7 +48,7 @@ def a():
 	s2.start()
 
 if __name__ == '__main__':
-  Parser = argparse.ArgumentParser(description='Select process for json serialize.')
+  Parser = argparse.ArgumentParser(description='pipe .')
   Parser.add_argument('process', help='process to serialize')
   Args= Parser.parse_args()
 
