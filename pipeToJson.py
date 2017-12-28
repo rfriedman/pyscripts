@@ -21,18 +21,37 @@ class pipeToProcess(object):
 		self.outlist = list()
 		self.procinlist()
 		self.batch = dict()
+		self.node = dict()
 		self.user = self.hostlist[0]
 	def createbatch(self,proc1):
+		"""create batch as:
+		{
+				{"hostlist":[{pi@192.168.0.1},{pi@192.168.0.2}],
+				 "joblist":[{"cmd":ssh,"args":"{host} 'ssh-keygen' 2>>error.log}]
+		}
+
+		"""
+		self.node = dict()
 		del self.hostlist[0]
 		self.batch['hostlist']=[]
 		self.batch['joblist'] =[]:
 			self.batch['hostlist'].append(self.user + '@'+ host)
-		
+		__cnt = 0
+		cmd=''
+		arglist=''
 		for proc in proc1:
 			args = proc.split()
-
-
-
+			for a in args:
+				if __cnt==0:
+					cmd=a
+				if cnt > 0:
+					arglist=arglist + ' ' + a	
+				cnt = cnt + 1
+		self.node['cmd']=cmd
+		self.node['args']=argslist
+		self.batch['joblist'].append(node)
+		
+		
 	def keygen(self):
 		for host in self.hostslist:
 			self.setproc(self.inlist[0])
