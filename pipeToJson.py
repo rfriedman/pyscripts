@@ -14,15 +14,28 @@ class pipeToProcess(object):
 	 sudo cp ~/crontab /etc/crontab &&
 	 rm ~/crontab'
 	'''
-	def __init__(self,procfile, hostsfile):
+	def __init__(self,procfile, hostfile):
 		self.processlist = procfile.readlines()
-		self.hostslist = hostsfile.readlines()
+		self.hostlist = hostfile.readlines()
 		self.inlist = list()
 		self.outlist = list()
 		self.procinlist()
+		self.batch = dict()
+		self.user = self.hostlist[0]
+	def createbatch(self,proc1):
+		del self.hostlist[0]
+		self.batch['hostlist']=[]
+		self.batch['joblist'] =[]:
+			self.batch['hostlist'].append(self.user + '@'+ host)
+		
+		for proc in proc1:
+			args = proc.split()
+
+
+
 	def keygen(self):
 		for host in self.hostslist:
-			self.setproc(self.inlist)
+			self.setproc(self.inlist[0])
 
 
 	def procinlist(self):
@@ -41,6 +54,9 @@ class pipeToProcess(object):
 		self.proc2 = str
 	def setArgsOne(self,str):
 		self.args1 =str
+	def startsingle(self):
+		self.processIn = Popen(self.proc ,stderr=PIPE)
+
 	def start(self):
 		self.processIn = Popen([self.proc , self.args1],stdout=PIPE,stderr=PIPE)
 		self.processOut = Popen([self.proc2 ],stdin=self.processIn.stdout,stderr=PIPE)
