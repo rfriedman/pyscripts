@@ -19,13 +19,14 @@ class pipeToProcess(object):
 		self.hostslist = hostsfile.readlines()
 		self.inlist = list()
 		self.outlist = list()
-		self.inlist()
+		self.procinlist()
 	def keygen(self):
-		for host in hostslist:
-			self.setproc(inlis)
+		for host in self.hostslist:
+			self.setproc(self.inlist)
 
 
-	def inlist(self):
+	def procinlist(self):
+		'''inlist()'''
 		lst = self.processlist.split('|')
 		cnt = 0
 		for line in lst:
@@ -41,10 +42,8 @@ class pipeToProcess(object):
 	def setArgsOne(self,str):
 		self.args1 =str
 	def start(self):
-		self.processIn =
-          Popen([self.proc , self.args1],stdout=PIPE,stderr=PIPE)
-		self.processOut = 
-		  Popen([self.proc2 ],stdin=self.processIn.stdout,stderr=PIPE)
+		self.processIn = Popen([self.proc , self.args1],stdout=PIPE,stderr=PIPE)
+		self.processOut = Popen([self.proc2 ],stdin=self.processIn.stdout,stderr=PIPE)
 
 		self.processIn.stdout.close()
 		self.processOut.communicate()
