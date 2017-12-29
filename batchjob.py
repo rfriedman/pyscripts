@@ -46,8 +46,8 @@ def createbatch(self):
 				setArgsOne(job[1]['cmd'].encode("utf-8")
 				if job[0]['args'] != 'null':
 				setArgsOne(job[1]['args'].encode("utf-8").replace("{host}",host))])
-		self.start()
 def setproc(self,str):
+		self.start()
  self.proc = str
 
 def setredirectproc(self,str):
