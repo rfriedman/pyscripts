@@ -20,7 +20,7 @@ class pipeToProcess(object):
 
 		self.joblist = self.batch['joblist']
 		self.hostlist = self.batch['hostlist']
-
+'''
 	def createbatch(self,proc1):
 		"""create batch from:
 		{
@@ -37,8 +37,8 @@ class pipeToProcess(object):
 		for host in self.hostlist:
 			for job in self.joblist:
                self.proc(job['cmd'].encode("utf-8"))
-			   self.args1(job['args'].encode"utf-8").replace("{host}",host.encode("utf-8"))
-			   
+			   self.args1(job['args'].encode("utf-8").replace("{host}",host.encode("utf-8"))
+	'''		   
 
 	def setproc(self,str):
 		self.proc = str
