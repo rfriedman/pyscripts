@@ -4,7 +4,7 @@ import argparse
 
 class pipeToProcess(object):
 	''' need to accomodate:
-	ssh {user}@{hostlist} 'ssh-keygen' 2>>error.log
+	ssh {user}@{hostlist} 'ssh-keygen' 2>>error.log | null
 	cat .ssh/id_rsa.pub | ssh {user}@{hostlist} 'cat >> ~/.ssh/authorized_keys'
 	ssh {user}@{hostlist} 'cat ~/.ssh/id_rsa.pub' | cat >> ~/.ssh/authorized_keys
 	cat hostinfo.sh | ssh {user}@{hostlist} 'cat >> ~/hostinfo.sh &&
@@ -34,7 +34,8 @@ class pipeToProcess(object):
 		self.node = dict()
 		del self.hostlist[0]
 		self.batch['hostlist']=[]
-		self.batch['joblist'] =[]:
+		self.batch['joblist'] =[]
+		for host in self.hostlist:
 			self.batch['hostlist'].append(self.user + '@'+ host)
 		__cnt = 0
 		cmd=''
@@ -45,7 +46,7 @@ class pipeToProcess(object):
 				if __cnt==0:
 					cmd=a
 				if cnt > 0:
-					arglist=arglist + ' ' + a	
+					arglist=arglist + ' ' + a
 				cnt = cnt + 1
 		self.node['cmd']=cmd
 		self.node['args']=argslist
@@ -67,6 +68,7 @@ class pipeToProcess(object):
 				self.outlist.append(line)
 			else:
 				self.inlist.append(line)
+
 	def setproc(self,str):
 		self.proc = str
 	def setredirectproc(self,str):
