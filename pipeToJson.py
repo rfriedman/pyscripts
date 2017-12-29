@@ -1,6 +1,6 @@
 #!/usr/bin/python
 from subprocess import Popen, PIPE
-import argparse
+import argparse, json
 
 class pipeToProcess(object):
 	''' need to accomodate:
@@ -14,60 +14,31 @@ class pipeToProcess(object):
 	 sudo cp ~/crontab /etc/crontab &&
 	 rm ~/crontab'
 	'''
-	def __init__(self,procfile, hostfile):
-		self.processlist = procfile.readlines()
-		self.hostlist = hostfile.readlines()
-		self.inlist = list()
-		self.outlist = list()
-		self.procinlist()
-		self.batch = dict()
-		self.node = dict()
-		self.user = self.hostlist[0]
+	def __init__(self,batchfile):
+		with open(batchfile,'r') as json_data:
+			self.batch = json.load(json_data)
+
+		self.joblist = self.batch['joblist']
+		self.hostlist = self.batch['hostlist']
+
 	def createbatch(self,proc1):
-		"""create batch as:
+		"""create batch from:
 		{
 				{"hostlist":[{pi@192.168.0.1},{pi@192.168.0.2}],
-				 "joblist":[{"cmd":ssh,"args":"{host} 'ssh-keygen' 2>>error.log}]
+				 "joblist":[
+					 		[
+						     {"cmd":ssh,"args":"{host} 'ssh-keygen' 2>>error.log"},
+							 {"cmd":null,"args":null}
+							 ],
+				 			]
 		}
 
 		"""
-		self.node = dict()
-		del self.hostlist[0]
-		self.batch['hostlist']=[]
-		self.batch['joblist'] =[]
 		for host in self.hostlist:
-			self.batch['hostlist'].append(self.user + '@'+ host)
-		__cnt = 0
-		cmd=''
-		arglist=''
-		for proc in proc1:
-			args = proc.split()
-			for a in args:
-				if __cnt==0:
-					cmd=a
-				if cnt > 0:
-					arglist=arglist + ' ' + a
-				cnt = cnt + 1
-		self.node['cmd']=cmd
-		self.node['args']=argslist
-		self.batch['joblist'].append(node)
-		
-		
-	def keygen(self):
-		for host in self.hostslist:
-			self.setproc(self.inlist[0])
-
-
-	def procinlist(self):
-		'''inlist()'''
-		lst = self.processlist.split('|')
-		cnt = 0
-		for line in lst:
-			cnt = cnt+1
-			if cnt % 2 == 0:
-				self.outlist.append(line)
-			else:
-				self.inlist.append(line)
+			for job in self.joblist:
+               self.proc(job['cmd'].encode("utf-8"))
+			   self.args1(job['args'].encode"utf-8").replace("{host}",host.encode("utf-8"))
+			   
 
 	def setproc(self,str):
 		self.proc = str
