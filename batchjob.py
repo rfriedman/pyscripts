@@ -55,7 +55,7 @@ class pipeToProcess(object):
 
 		self.processIn.stdout.close()
 		self.processOut.communicate()
-		
+	'''	
 def a():
 	s2 = pipeToProcess()
 	s2.setproc("/bin/ps")
@@ -70,7 +70,7 @@ if __name__ == '__main__':
 
   if Args.process == "ps":
     a()
-
+'''
 
 
     
