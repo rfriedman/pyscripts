@@ -1,10 +1,9 @@
 
 {    
-     "hostlist":[["pi@192.168.0.1"],["pi@192.168.0.2"]],
+     "hostlist":[["pi@192.168.0.7"],["pi@192.168.0.7"]],
      "joblist":[
                  [
-                   {"cmd":"ssh", "args":"{host} 'ssh-keygen' 2>>error.log"},
-                   {"cmd":"null","args":"null"}
+                   {"cmd":"ssh", "args":"{host} 'ssh-keygen'"}
                  ]
                ]
 }

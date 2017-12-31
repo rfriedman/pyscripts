@@ -1,3 +1,0 @@
-Generating public/private rsa key pair.
-/home/richard/.ssh/id_rsa already exists.
-Overwrite (y/n)? 
