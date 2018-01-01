@@ -3,7 +3,7 @@
      "hostlist":[["pi@192.168.0.7"],["pi@192.168.0.7"]],
      "joblist":[
                  [
-                   {"cmd":"ssh", "args":"{host} 'cat-/home/pi/.ssh/authorized_keys'>key.log"}
+                   {"cmd":"ssh", "args":"{host} 'cat-/home/pi/.ssh/authorized_keys'"}
                  ]
                ]
 }

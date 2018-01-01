@@ -15,15 +15,20 @@ class keyexchange(object):
         j=list()
         for proc in self.proclist:
           args = proc['args'].split()
-          args = args
           args.insert(0,proc['cmd'])
-          self.arglist.append(args) 
+          self.arglist.append(args)
+        for lst in self.arglist:
+            for arg in lst:
+                l.append(arg.encode("utf-8").replace("-"," ").replace('"',''))
+            j.append(l)
+            l=list()
 
+        self.arglist=j
+    
     def start(self):
         for arglst in self.arglist:
-            print arglst
             #p=Popen(arglst)
-            p=Popen(arglst,stdout=PIPE,stdin=PIPE,stderr=PIPE)
+            p=Popen(arglst,stdout=None,stdin=PIPE,stderr=PIPE)
             batch_out = p.communicate(input='')[0]
             print('\n')
 

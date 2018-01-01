@@ -13,9 +13,7 @@ def keyexchange_arglist():
     batch.createbatch()
     keybatch = keyexchange(batch.proclist)
     keybatch.argslist()
-    for list in keybatch.arglist:
-        for arg in list:
-          print arg
+    
     return keybatch.arglist 
    
 def keyexchange_tstart():
@@ -28,7 +26,9 @@ def keyexchange_tstart():
    
 if __name__ =="__main__":
     print('hello')
-    key = keyexchange_arglist()
+    key=keyexchange_tstart()
     print key 
+    for a in key:
+        print a
 
     
