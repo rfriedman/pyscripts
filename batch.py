@@ -17,23 +17,13 @@ class intrpolate(object):
         for host in hostlist:
           for joblist in self.joblist:
             for job in joblist:
-              self.setcmd(job['cmd'].encode("utf-8"))
-              self.setargs(job['args'].encode("utf-8").replace("{host}", host))
-          
-      self.node['cmd'] = self.cmds[0]
-      self.node['args'] = self.args[0].encode("utf-8")
-      self.setproc(self.node)
-      self.node = dict()
-
-      self.node['cmd'] = self.cmds[1]
-      self.node['args'] = self.args[1]
-      self.setproc(self.node)
-      self.node = dict()
-      
-      self.cmds = list()
-      self.args = list()
-          
-           
+              job['cmd'] = job['cmd']
+              job['args'] = job['args'].replace("{host}", host)
+              self.node = job
+              self.setproc(self.node)
+              self.node = dict()
+      self.cmds=list()
+      self.args=list()
   '''['cmd','cmd']'''
   def setcmd(self, value):
         self.cmds.append(value)
@@ -47,7 +37,6 @@ class intrpolate(object):
      ]
   '''
   def setproc(self, value):
-        print(value)
         self.proclist.append(value)
         
   def start(self):

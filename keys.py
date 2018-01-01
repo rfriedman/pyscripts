@@ -4,22 +4,25 @@ from subprocess import Popen,PIPE
 import subprocess
 import sys
 
-def arglist(proc):
-    l = proc['args'].split()
-    l.insert(0,proc['cmd'])
-    return l    
-batch = intrpolate('test/batch.json')
-batch.createbatch()
-print(batch.proclist )
-
-for proc in batch.proclist:
-    arglst=proc['args'].split()
-    arglst.insert(0,proc['cmd'])
-    print(arglst)
-    p=Popen(arglst,stdout=PIPE,stdin=PIPE,stderr=PIPE)
-    batch_out= p.communicate(input='\nn\n')[0]
-    sys.stdout.write(batch_out) 
-print('\n')
+class keygen(object):
+    def __init__(self,proclist):
+        self.proclist = proclist
+        self.arglist = list()
+        self.inputstr = '\nn\n'
+    
+    def arglist(proc):
+        args = proc['args'].split()
+        args.insert(0,proc['cmd'])
+        self.arglist.append(args) 
+    
+    def start(self):
+        for proc in batch.proclist:
+          arglst=arglist(proc)
+          print(arglst)
+          p=Popen(arglst,stdout=PIPE,stdin=PIPE,stderr=PIPE)
+          batch_out= p.communicate(input=self.inputstr)[0]
+          sys.stdout.write(batch_out) 
+          print('\n')
 
 
 
