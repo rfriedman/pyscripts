@@ -4,7 +4,7 @@ from subprocess import Popen,PIPE
 import subprocess
 import sys
 
-class keyexchange(object):
+class processlist(object):
     def __init__(self,proclist):
         self.proclist = proclist
         self.arglist = list()
@@ -24,12 +24,18 @@ class keyexchange(object):
             l=list()
 
         self.arglist=j
-    
+    def writescript(self):
+        sys.stdout.write('#!/bin/sh\n')
+        for arglist in self.arglist:
+            for arg in arglist:
+              sys.stdout.write(arg)
+            sys.stdout.write('\n')
     def start(self):
         for arglst in self.arglist:
             #p=Popen(arglst)
-            p=Popen(arglst,stdout=None,stdin=PIPE,stderr=PIPE)
-            batch_out = p.communicate(input='')[0]
+            p=Popen(arglst,stdout=PIPE,stdin=PIPE,stderr=PIPE)
+            result = p.stdout.readlines()
+            print result
             print('\n')
 
 

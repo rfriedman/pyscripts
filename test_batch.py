@@ -17,7 +17,7 @@ if __name__ =="__main__":
     print('hello')
     batch = batch_init()
     print batch.hostlist
-    print batch.joblist
-    batch = batch_createbatch()
-    print batch.proclist
+#    print batch.joblist
+#    batch = batch_createbatch()
+#    print batch.proclist
     
