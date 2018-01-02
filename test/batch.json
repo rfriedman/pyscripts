@@ -7,7 +7,7 @@
                    {"cmd":"ssh", "args":"?{host}?'ssh-keygen'"},
                    {"cmd":"cat", "args":"?/home/pi/.ssh/id_rsa.pub?|?ssh?{host}?'cat>>/home/pi/.ssh/authorized_keys'"},
                    {"cmd":"ssh", "args":"?{host}?'cat?/home/pi/.ssh/id_rsa.pub'>>/home/pi/.ssh/authorized_keys_replace"},
-                   {"cmd":"cat", "args":"?/home/pi/jsonlog.sh?|?ssh?{host}?'cat?/home/pi/jsonlog.sh?&&?sudo?cp?/home/pi/jsonlog.sh?/usr/local/sbin'"}
+                   {"cmd":"cat", "args":"?/home/pi/jsonlog.sh?|?ssh?{host}?'cat>/home/pi/jsonlog.sh?&&?sudo?cat?/home/pi/jsonlog.sh>>/usr/local/sbin'"}
                  ]
                ]
 }
