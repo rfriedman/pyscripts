@@ -6,3 +6,8 @@ cat /home/pi/.ssh/id_rsa | ssh richard@192.168.0.6 'cat>>/home/{user}/.ssh/autho
 
 #add clients public key to host
 ssh richard@192.168.0.6 'cat /home/{user}/.ssh/id_rsa.pub'>/home/{user}/.ssh/authorized_keys
+
+#add jsonlog.sh to host
+
+
+#add crontab entry to /etc/crontab to host
