@@ -39,7 +39,7 @@ def processlist_writescript():
     return keybatch.arglist
    
 if __name__ =="__main__":
-   args=processlist_arglist()
-   print(args)
-#   processlist_writescript()
+#  args=processlist_arglist()
+#  print(args)
+   processlist_writescript()
     

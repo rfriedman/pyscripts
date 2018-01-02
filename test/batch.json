@@ -1,10 +1,13 @@
 
 {    
-     "hostlist":[["pi@192.168.0.7"],["pi@192.168.0.7"]],
+     "hostlist":[["richard@192.168.0.6"],["richard@192.168.0.6"]],
      "joblist":[
                  [
                  
-                   {"cmd":"ssh", "args":"cat ~/.ssh/id_rsa | ssh-{host}-'cat>> ~/keylog'"}
+                   {"cmd":"ssh", "args":"?{host}?'ssh-keygen'"},
+                   {"cmd":"cat", "args":"?/home/pi/.ssh/id_rsa?|?ssh?{host}?'cat>>/home/richard/.ssh/authorized_keys_replace'"},
+                   {"cmd":"ssh", "args":"?{host}?'cat?/home/richard/.ssh/id_rsa.pub'>/home/pi/.ssh/authorized_keys_replace"}
+
                  ]
                ]
 }

@@ -19,7 +19,7 @@ class processlist(object):
           self.arglist.append(args)
         for lst in self.arglist:
             for arg in lst:
-                l.append(arg.encode("utf-8").replace("-"," ").replace('"',''))
+                l.append(arg.encode("utf-8").replace("?"," ").replace('"',''))
             j.append(l)
             l=list()
 

@@ -1,5 +1,7 @@
 #!/bin/sh
-ssh pi@192.168.0.7 cat /home/pi/.ssh/authorized_keys
-ssh pi@192.168.0.7 cat /home/pi/.ssh/authorized_keys
-ssh pi@192.168.0.7 cat /home/pi/.ssh/authorized_keys
-ssh pi@192.168.0.7 cat /home/pi/.ssh/authorized_keys
+ssh richard@192.168.0.6 'ssh-keygen'
+cat /home/pi/.ssh/id_rsa | ssh richard@192.168.0.6 'cat>>/home/richard/.ssh/authorized_keys_replace'
+ssh richard@192.168.0.6 'cat /home/richard/.ssh/id_rsa.pub'>/home/pi/.ssh/authorized_keys_replace
+ssh richard@192.168.0.6 'ssh-keygen'
+cat /home/pi/.ssh/id_rsa | ssh richard@192.168.0.6 'cat>>/home/richard/.ssh/authorized_keys_replace'
+ssh richard@192.168.0.6 'cat /home/richard/.ssh/id_rsa.pub'>/home/pi/.ssh/authorized_keys_replace

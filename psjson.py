@@ -27,16 +27,18 @@ class PsTblToJson(object):
 
     def headerlist(self):
         """creates headers from first line read in from file self.lines"""
-        self.headers = self.lines[2].split()
+        self.headers = self.lines[3].split()
         self.headercnt = len(self.headers)
 
     def hostinfo(self):
         """get host info {"ipv4":address,"ipv6":address} """
-        self.infolist = dict(ip = 'ipv4',date = 'datetime')
+        self.infolist = dict(ip = 'ipv4',mac='mac', date = 'datetime')
         self.host = self.lines[0].split()
         self.date = self.lines[1]
+        self.mac = self.lines[2]
         self.node.clear()
         self.node[self.infolist['ip']] = self.host[0]
+        self.node[self.infolist['mac']] = self.mac
         self.node[self.infolist['date']] = self.date
         self.data['hostinfo'].update(self.node)
         
@@ -45,7 +47,7 @@ class PsTblToJson(object):
         """creates dictionary object to output to json self.data"""
         self.datanode.clear()
         self.datanode['process'] = []
-        for line in self.lines[3:]:
+        for line in self.lines[4:]:
             __cnt = 0
             self.values = line.split()
             self.node = dict()            
