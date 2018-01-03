@@ -7,7 +7,7 @@
                    {"cmd":"ssh", "args":"?{host}?'mkdir?/home/richard/.ssh'"},
                    {"cmd":"ssh", "args":"?{host}?'ssh-keygen'"},
                    {"cmd":"cat", "args":"?/home/pi/.ssh/key.host?|?ssh?{host}?'cat>>/home/richard/.ssh/known_hosts'"},
-                   {"cmd":"cat", "args":"?/home/richard/.ssh/id_rsa.pub?|?ssh?{host}?'cat>>/home/richard/.ssh/authorized_keys'"},
+                   {"cmd":"cat", "args":"?/home/pi/.ssh/id_rsa.pub?|?ssh?{host}?'cat>>/home/richard/.ssh/authorized_keys'"},
                    {"cmd":"ssh", "args":"?{host}?'cat?/home/richard/.ssh/id_rsa.pub'>>/home/pi/.ssh/authorized_keys"},
                    {"cmd":"cat", "args":"?/home/pi/jsonlog.sh?|?ssh?{host}?'cat>/home/richard/jsonlog.sh?&&?sudo?cp?/home/richard/jsonlog.sh?/usr/local/sbin/jsonlog.sh&&rm?/home/richard/jsonlog.sh'"},
                    {"cmd":"cat", "args":"?/home/pi/crontab?|?ssh?{host}?'cat>/home/richard/crontab?&&?sudo?cp?/home/richard/crontab?/etc/crontab&&rm?/home/richard/crontab'"},
