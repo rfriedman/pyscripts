@@ -1,6 +1,9 @@
 from batch import intrpolate
 
 testfile = 'test/batch.json'
+def batch_init():
+    batch = intrpolate(testfile)
+    return batch
 
 def batch_createbatch():
     batch = intrpolate(testfile)
