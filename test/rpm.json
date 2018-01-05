@@ -1,8 +1,8 @@
 
 {    
-     "hostlist":[["pi@172.16.24.20"]],
+     "hostlist":["pi@172.16.24.46","pi@172.16.24.47"],
      "joblist":[
-                 [
+                 
                  
                    {"cmd":"ssh", "args":"?{host}?'mkdir?/home/pi/.ssh'"},
                    {"cmd":"ssh", "args":"?{host}?'ssh-keygen'"},
@@ -13,6 +13,6 @@
                    {"cmd":"cat", "args":"?/home/pi/crontab?|?ssh?{host}?'cat>/home/pi/crontab?&&?sudo?cp?/home/pi/crontab?/etc/crontab&&rm?/home/pi/crontab'"},
                    {"cmd":"ssh", "args":"?{host}?'sudo?chmod?755?/usr/local/sbin/jsonlog.sh'"} 
                    
-                 ]
+                 
                ]
 }
