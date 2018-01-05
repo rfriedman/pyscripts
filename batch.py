@@ -25,8 +25,10 @@ class intrpolate(object):
   '''['args','args']'''
   def setargs(self, node):
         for host in self.hostlist:
-                node['args']= node['args'].replace("{host}",host)
-                self.args.append(node)
+                self.node['args']=node['args'].replace("{host}",host)
+                self.node['cmd']=node['cmd']
+                self.args.append(self.node)
+                self.node =dict()
          
   '''[
       {"cmd":self.cmds[0],"args":self.args[0]},
