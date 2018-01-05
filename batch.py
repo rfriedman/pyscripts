@@ -10,30 +10,24 @@ class intrpolate(object):
       self.joblist = self.batch['joblist']
       self.node = dict()
       self.proclist = list()
-      self.arglist = list()
-      self.cmdslist = list()
       self.cmds = list()
       self.args = list()
   def createbatch(self):
           for job in self.joblist:
-              self.setcmd(job['cmd'] )
-              self.setargs(job['args'] )
-          for host in self.hostlist:
-                self.arglist.append(self.args)
-                self.cmdlist.append(self.cmds)
-          for arg in self.arglist:
-              self.node['args'] = arg
-        
-                  #self.node['args']=arg.replace("{host}",host)
-
-            
-  '''['cmd','cmd']'''
-  def setcmd(self, value):
-        self.cmds.append(value)
-    
+              self.node['cmd'] = job['cmd'] 
+              self.node['args'] = job['args'] 
+              self.setproc(self.node)
+              self.node = dict()
+          for node in self.proclist:
+            self.setargs(node)
+          self.proclist = self.args
+   
   '''['args','args']'''
-  def setargs(self, value):
-        self.args.append(value)
+  def setargs(self, node):
+        for host in self.hostlist:
+                node['args']= node['args'].replace("{host}",host)
+                self.args.append(node)
+         
   '''[
       {"cmd":self.cmds[0],"args":self.args[0]},
       {"cmd":self.cmds[1],"args":self.args[1]}
