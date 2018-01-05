@@ -1,0 +1,24 @@
+
+{    
+     "hostuser":"pi",
+     "clientuser":"richard",
+     "hostlist":["172.16.24.47"],
+     "joblist":[
+                 
+                 
+                   {"cmd":"ssh", "args":"?{hostuser}@{host}?'mkdir?/home/pi/.ssh'"},
+                   {"cmd":"ssh", "args":"?{host}?'ssh-keygen'"},
+                   {"cmd":"cat", "args":"?/home/{clientuser}/.ssh/key.host?|?ssh?{hostuser}@{host}?'cat>>/home/{hostuser}/.ssh/known_hosts'"},
+                   {"cmd":"cat", "args":"?/home/{clientuser}/.ssh/id_rsa.pub?|?ssh?{hostuser}@{host}?'cat>>/home/pi/.ssh/authorized_keys'"},
+                   {"cmd":"ssh", "args":"?{hostuser}@{host}?'cat?/home/{hostuser}/.ssh/id_rsa.pub'?|?cat>>/home/{clientuser}/.ssh/authorized_keys"},
+                   {"cmd":"cat", "args":"?/home/{clientuser}/jsonlog.sh?|?ssh?{hostuser}@{host}?'cat>/home/{hostuser}/jsonlog.sh"},
+                   {"cmd":"ssh", "args":"?{hostuser}@{host}?sudo?cp?/home/{hostuser}/jsonlog.sh?/usr/local/sbin/jsonlog.sh"},
+                   {"cmd":"ssh", "args":"?rm?/home/{hostuser}/jsonlog.sh'"},
+                   {"cmd":"cat", "args":"?/home/{clientuser}/crontab?|?ssh?{hostuser}@{host}?'cat>/home/{hostuser}/crontab"},
+                   {"cmd":"ssh", "args":"?{hostuser}@{host}?sudo?cp?/home/{hostuser}/crontab?/etc/crontab"},
+                   {"cmd":"ssh", "args":"?{hostuser@{host}?rm?/home/{hostuser}/crontab'"},
+                   {"cmd":"ssh", "args":"?{hostuser}@{host}?'sudo?chmod?755?/usr/local/sbin/jsonlog.sh'"} 
+                   
+                 
+               ]
+}
