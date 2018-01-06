@@ -6,6 +6,8 @@ class intrpolate(object):
   def __init__(self, batchfile):
       with open(batchfile,'r') as data:
         self.batch = json.load(data)
+      self.hostuser = self.batch['hostuser']
+      self.clientuser = self.batch['clientuser']
       self.hostlist = self.batch['hostlist']
       self.joblist = self.batch['joblist']
       self.node = dict()
@@ -26,6 +28,8 @@ class intrpolate(object):
   def setargs(self, node):
         for host in self.hostlist:
                 self.node['args']=node['args'].replace("{host}",host)
+                self.node['args']=self.node['args'].replace("{clientuser}",self.clientuser)
+                self.node['args']=self.node['args'].replace("{hostuser}",self.hostuser)
                 self.node['cmd']=node['cmd']
                 self.args.append(self.node)
                 self.node =dict()
