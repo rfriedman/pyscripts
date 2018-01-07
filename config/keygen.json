@@ -1,0 +1,22 @@
+
+{    
+     "hostuser":"richard",
+     "clientuser":"pi",
+     "hostlist":["192.168.0.4"],
+     "joblist":[
+                 
+                 
+                   {"cmd":"ssh", "args":"?{hostuser}@{host}?'mkdir?/home/pi/.ssh'"},
+
+                   {"cmd":"ssh", "args":"?{hostuser}@{host}?'ssh-keygen'"},
+
+                   {"cmd":"cat", "args":"?/home/{clientuser}/.ssh/key.host?|?ssh?{hostuser}@{host}?'cat>>/home/{hostuser}/.ssh/known_hosts'"},
+
+                   {"cmd":"cat", "args":"?/home/{clientuser}/.ssh/id_rsa.pub?|?ssh?{hostuser}@{host}?'cat>>/home/{hostuser}/.ssh/authorized_keys'"},
+
+                   {"cmd":"ssh", "args":"?{hostuser}@{host}?'cat?/home/{hostuser}/.ssh/id_rsa.pub'?|?cat>>/home/{clientuser}/.ssh/authorized_keys"}
+
+                   
+                 
+               ]
+}
