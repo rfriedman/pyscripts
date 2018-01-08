@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 from batch import intrpolate
 from processlist import processlist
 import sys

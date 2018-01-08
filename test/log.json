@@ -1,0 +1,21 @@
+
+{    
+     "hostuser":"richard",
+     "clientuser":"pi",
+     "hostlist":["192.168.0.4"],
+     "joblist":[
+                 
+                 
+
+
+                   {"cmd":"cat", "args":"?/home/{clientuser}/jsonlog.sh?|?ssh?{hostuser}@{host}?'cat>/home/{hostuser}/jsonlog.sh'"},
+
+                   {"cmd":"ssh", "args":"?-t?{hostuser}@{host}?'sudo?cp?/home/{hostuser}/jsonlog.sh?/usr/local/sbin/jsonlog.sh'"},
+
+                   {"cmd":"ssh", "args":"?{hostuser}@{host}?'rm?/home/{hostuser}/jsonlog.sh'"},
+
+                   {"cmd":"ssh", "args":"?-t?{hostuser}@{host}?'sudo?chmod?755?/usr/local/sbin/jsonlog.sh'"} 
+                   
+                 
+               ]
+}

@@ -3,7 +3,7 @@ from batch import intrpolate
 from processlist import processlist
 import sys
 import pdb
-config = 'config/cron.json'
+config = 'config/resetkeys.json'
 def processlist_writescript():
     sys.stderr.write('process_writescript\n')
     batch = intrpolate(config)

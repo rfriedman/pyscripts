@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/env python
 from subprocess import Popen, PIPE
 import argparse, json
 
@@ -24,7 +24,7 @@ class intrpolate(object):
             self.setargs(node)
           self.proclist = self.args
    
-  '''['args','args']'''
+  '''[{"cmd":self.cmds,"args":self.args},{"cmd":self.cmds,"args":self.args}] (joblist*hostlist)'''
   def setargs(self, node):
         for host in self.hostlist:
                 self.node['args']=node['args'].replace("{host}",host)
@@ -34,11 +34,7 @@ class intrpolate(object):
                 self.args.append(self.node)
                 self.node =dict()
          
-  '''[
-      {"cmd":self.cmds[0],"args":self.args[0]},
-      {"cmd":self.cmds[1],"args":self.args[1]}
-     ]
-  '''
+  '''{"cmd":self.cmds,"args":self.args} (joblist/joblist)'''
   def setproc(self, value):
         self.proclist.append(value)
         
