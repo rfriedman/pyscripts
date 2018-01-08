@@ -3,7 +3,13 @@ from batch import intrpolate
 from subprocess import Popen,PIPE
 import subprocess
 import sys
-
+'''
+use intrpolate.proclist as constructor
+change format:  [{"cmd":cmd "args":args},{"cmd":cmd "args":args}]
+to ["'cmd' 'args','cmd' 'args'"]
+ie  {"cmd":"ssh", "args":"?pi@192.168.0.1?'ssh-keygen'"} becomes:
+ssh pi@192.168.0.1 'ssh-keygen'
+'''
 class processlist(object):
     def __init__(self,proclist):
         self.proclist = proclist

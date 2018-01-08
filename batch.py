@@ -1,7 +1,17 @@
 #!/usr/bin/env python
 from subprocess import Popen, PIPE
 import argparse, json
-
+'''
+load json file as constructor
+create dictionary list and interpolate arguments to reference proper:
+host, hostuser, clientuser
+ 
+expand each job in joblist to create joblist for each host in
+self.proclist:  used as constructor fo processlist class
+format:  [{"cmd":cmd "args":args},{"cmd":cmd "args":args}]
+ie {"cmd":"ssh", "args":"?{hostuser}@{host}?'ssh-keygen'"}  becomes:
+{"cmd":"ssh", "args":"?pi@192.168.0.1?'ssh-keygen'"}
+'''
 class intrpolate(object):
   def __init__(self, batchfile):
       with open(batchfile,'r') as data:
