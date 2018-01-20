@@ -1,8 +1,8 @@
 
 {    
-     "hostuser":"richard",
+     "hostuser":"pi",
      "clientuser":"pi",
-     "hostlist":["192.168.0.4"],
+     "hostlist":["192.168.0.6"],
      "joblist":[
                  
                  
