@@ -1,15 +1,16 @@
 {    
-   "hostuser":"gngrbrd",
+   "hostuser":"pi",
    "clientuser":"pi",
-   "hostlist":["192.168.0.4"],
+   "hostlist":["172.16.24.2","172.16.24.3","172.16.24.4","172.16.24.6","172.16.24.9","172.16.24.10","172.16.24.11","172.16.24.12","172.16.24.13"],
    "joblist":[
                  
                  
-               {"cmd":"ssh", "args":"?{hostuser}@{host}?'mkdir?/home/{hostuser}/.ssh'"},
 
+               {"cmd":"ssh", "args":"?{hostuser}@{host}?'mkdir?/home/{hostuser}/.ssh'"},
                {"cmd":"ssh", "args":"?{hostuser}@{host}?'ssh-keygen'"},
 
-               {"cmd":"cat", "args":"?/home/{clientuser}/.ssh/key.host?|?ssh?{hostuser}@{host}?'cat>>/home/{hostuser}/.ssh/known_hosts'"},
+
+               {"cmd":"ssh", "args":"?{hostuser}@{host}?'ssh-keyscan?-H?-t?rsa?172.16.24.192>>/home/{hostuser}/.ssh/known_hosts'"},
 
                {"cmd":"cat", "args":"?/home/{clientuser}/.ssh/id_rsa.pub?|?ssh?{hostuser}@{host}?'cat>>/home/{hostuser}/.ssh/authorized_keys'"},
 

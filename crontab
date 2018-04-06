@@ -1,1 +1,1 @@
-*/1 * * * * 	pi /bin/sh jsonlog.sh 
+*/1 * * * * 	pi jsonlog.sh 
