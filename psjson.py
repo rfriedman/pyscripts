@@ -32,7 +32,7 @@ class PsTblToJson(object):
 
     def hostinfo(self):
         """get host info {"ipv4":address,"ipv6":address} """
-        self.infolist = dict(ip = 'ipv4',mac='mac', date = 'datetime')
+        self.infolist = dict(ip = 'ipv4',mac='mac', date = 'datetime',station='station')
         self.host = self.lines[0].split()
         self.date = self.lines[1]
         self.mac = self.lines[2]

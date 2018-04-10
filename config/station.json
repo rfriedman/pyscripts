@@ -1,0 +1,16 @@
+
+{    
+     "hostuser":"pi",
+     "clientuser":"pi",
+     "hostlist":["172.16.24.40","172.16.24.41","172.16.24.42","172.16.24.43","172.16.24.44","172.16.24.45","172.16.24.46","172.16.24.47","172.16.24.48","172.16.24.49"],
+     "joblist":[
+                 
+                 
+
+                   {"cmd":"cat", "args":"?/home/{clientuser}/.station?|?ssh?{hostuser}@{host}?'cat>/home/{hostuser}/.station'"}
+
+                   
+                 
+               ]
+}
+
