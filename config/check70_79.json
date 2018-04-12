@@ -7,9 +7,10 @@
                  
                  
 
-                   {"cmd":"cat", "args":"?/home/{clientuser}/.station?|?ssh?{hostuser}@{host}?'cat>/home/{hostuser}/.station'"}
+                   {"cmd":"ssh", "args":"?{hostuser}@{host}?'echo?{host}&&cat?/home/{hostuser}/.station'"}
 
                    
                  
                ]
 }
+

@@ -1,0 +1,11 @@
+#!/bin/sh
+ssh pi@172.16.24.70 'echo 172.16.24.70&&cat /home/pi/.station'
+ssh pi@172.16.24.71 'echo 172.16.24.71&&cat /home/pi/.station'
+ssh pi@172.16.24.72 'echo 172.16.24.72&&cat /home/pi/.station'
+ssh pi@172.16.24.73 'echo 172.16.24.73&&cat /home/pi/.station'
+ssh pi@172.16.24.74 'echo 172.16.24.74&&cat /home/pi/.station'
+ssh pi@172.16.24.75 'echo 172.16.24.75&&cat /home/pi/.station'
+ssh pi@172.16.24.76 'echo 172.16.24.76&&cat /home/pi/.station'
+ssh pi@172.16.24.77 'echo 172.16.24.77&&cat /home/pi/.station'
+ssh pi@172.16.24.78 'echo 172.16.24.78&&cat /home/pi/.station'
+ssh pi@172.16.24.79 'echo 172.16.24.79&&cat /home/pi/.station'
